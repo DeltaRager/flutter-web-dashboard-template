@@ -10,6 +10,19 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'routing/routes.dart';
 
+MaterialColor fontColor = const MaterialColor(0xFFD3BC91, const {
+  50: const Color(0xFFD3BC91),
+  100: const Color(0xFFD3BC91),
+  200: const Color(0xFFD3BC91),
+  300: const Color(0xFFD3BC91),
+  400: const Color(0xFFD3BC91),
+  500: const Color(0xFFD3BC91),
+  600: const Color(0xFFD3BC91),
+  700: const Color(0xFFD3BC91),
+  800: const Color(0xFFD3BC91),
+  900: const Color(0xFFD3BC91)
+});
+
 void main() {
   Get.put(MenuController());
   Get.put(NavigationController());
@@ -21,27 +34,30 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        initialRoute: authenticationPageRoute,
-        unknownRoute: GetPage(name: '/not-found', page: () => PageNotFound(), transition: Transition.fadeIn),
-        getPages: [
-        GetPage(name: rootRoute, page: () {
-          return SiteLayout();
-        }),
-        GetPage(name: authenticationPageRoute, page: () => AuthenticationPage()),
+      initialRoute: authenticationPageRoute,
+      unknownRoute: GetPage(
+          name: '/not-found',
+          page: () => PageNotFound(),
+          transition: Transition.fadeIn),
+      getPages: [
+        GetPage(
+            name: rootRoute,
+            page: () {
+              return SiteLayout();
+            }),
+        GetPage(
+            name: authenticationPageRoute, page: () => AuthenticationPage()),
       ],
       debugShowCheckedModeBanner: false,
       title: 'Dashboard',
       theme: ThemeData(
         scaffoldBackgroundColor: light,
-        textTheme: GoogleFonts.mulishTextTheme(Theme.of(context).textTheme).apply(
-          bodyColor: Colors.black
-        ),
-            pageTransitionsTheme: PageTransitionsTheme(
-      builders: {
-        TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
-        TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
-      }
-    ),
+        textTheme: GoogleFonts.staatlichesTextTheme(Theme.of(context).textTheme)
+            .apply(bodyColor: fontColor),
+        pageTransitionsTheme: PageTransitionsTheme(builders: {
+          TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+        }),
         primarySwatch: Colors.blue,
       ),
       // home: AuthenticationPage(),
